@@ -7,15 +7,17 @@ public class Mod {
 
     private String name;
     private  String description;
+    private String displayName;
     private Category category;
     private int key;
     private boolean enabled;
     protected MinecraftClient mc = MinecraftClient.getInstance();
 
-    public Mod(String name, String description, Category category) {
+    public Mod(String name, String description, Category category, String displayName) {
         this.name = name;
         this.description = description;
         this.category = category;
+        this.displayName = displayName;
     }
 
     public void toggle(){
@@ -61,6 +63,12 @@ public class Mod {
     }
     public Category getCategory() {
         return category;
+    }
+    public String getDisplayName() {
+        return displayName;
+    }
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
     }
 
     public enum Category {

@@ -1,6 +1,7 @@
 package HackClient.module;
 
 import HackClient.module.movement.Flight;
+import HackClient.module.movement.NoFall;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +28,7 @@ public class ModuleManager {
     }
 
     private void addModules() {
+        mods.add(new NoFall());
         mods.add(new Flight());
     }
 }
