@@ -27,6 +27,17 @@ public class ModuleManager {
         return enabeld;
     }
 
+    public List<Mod> getModulesInCategory(Mod.Category category){
+        List<Mod> categoryModules = new ArrayList<>();
+
+        for (Mod mod : mods){
+            if (mod.getCategory() == category) {
+                categoryModules.add(mod);
+            }
+        }
+        return categoryModules;
+    }
+
     private void addModules() {
         mods.add(new NoFall());
         mods.add(new Flight());

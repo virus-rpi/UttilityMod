@@ -2,6 +2,7 @@ package HackClient;
 
 import HackClient.module.Mod;
 import HackClient.module.ModuleManager;
+import HackClient.ui.screens.clickgui.ClickGUI;
 import net.fabricmc.api.ModInitializer;
 
 import net.minecraft.client.MinecraftClient;
@@ -24,6 +25,9 @@ public class Client implements ModInitializer {
         if (action == GLFW.GLFW_PRESS) {
             for (Mod module : ModuleManager.INSTANCE.getModules()){
                 if (key == module.getKey()) module.toggle();
+            }
+            if (key == GLFW.GLFW_KEY_RIGHT_SHIFT) {
+                mc.setScreen(ClickGUI.INSTANCE);
             }
         }
     }
