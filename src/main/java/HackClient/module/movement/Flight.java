@@ -55,4 +55,5 @@ public class Flight extends Mod {
         Vec3d velocity = mc.player.getVelocity();
         mc.player.setVelocity(velocity.x, motionY, velocity.z);
     }
+
 }
