@@ -1,19 +1,23 @@
 package HackClient.module.movement;
 
 import HackClient.module.Mod;
+import HackClient.module.settings.NumberSetting;
 import net.minecraft.util.math.Vec3d;
 import org.lwjgl.glfw.GLFW;
 
 public class Flight extends Mod {
     private int time = 0;
+    public NumberSetting speed = new NumberSetting("Speed", 0, 10, 1, 1);
     public Flight() {
         super("Flight", "Allows you to fly", Category.MOVEMENT, "Flight");
-        this.setKey(GLFW.GLFW_KEY_G);
+        this.setKey(GLFW.GLFW_KEY_V);
+        addSetting(speed);
     }
 
     @Override
     public void onTick() {
         mc.player.getAbilities().flying = true;
+        mc.player.getAbilities().setFlySpeed(speed.getValueFloat()/10);
         doAntiKick();
         super.onTick();
     }

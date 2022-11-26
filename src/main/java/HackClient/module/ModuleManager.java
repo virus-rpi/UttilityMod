@@ -1,7 +1,11 @@
 package HackClient.module;
 
+import HackClient.Client;
 import HackClient.module.movement.Flight;
 import HackClient.module.movement.NoFall;
+import HackClient.module.Mod.Category;
+import HackClient.module.render.Coordinates;
+import org.apache.logging.log4j.LogManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +31,7 @@ public class ModuleManager {
         return enabeld;
     }
 
-    public List<Mod> getModulesInCategory(Mod.Category category){
+    public List<Mod> getModulesInCategory(Category category){
         List<Mod> categoryModules = new ArrayList<>();
 
         for (Mod mod : mods){
@@ -39,7 +43,8 @@ public class ModuleManager {
     }
 
     private void addModules() {
-        mods.add(new NoFall());
         mods.add(new Flight());
+        mods.add(new NoFall());
+        mods.add(new Coordinates());
     }
 }
