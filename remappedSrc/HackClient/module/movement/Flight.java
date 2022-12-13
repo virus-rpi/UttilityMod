@@ -26,7 +26,6 @@ public class Flight extends Mod {
 
     @Override
     public void onTick() {
-        assert mc.player != null;
         mc.player.getAbilities().flying = true;
         mc.player.getAbilities().setFlySpeed(speed.getValueFloat()/10);
         doAntiKick();
@@ -34,15 +33,13 @@ public class Flight extends Mod {
     }
     @Override
     public void onDisable(){
-        assert mc.player != null;
         mc.player.getAbilities().flying = false;
         super.onDisable();
     }
 
-    public static class PacketHelper {
+    public class PacketHelper {
         public static void sendPosition(Vec3d pos) {
             MinecraftClient client = MinecraftClient.getInstance();
-            assert client.player != null;
             ClientConnectionInvoker conn = (ClientConnectionInvoker)client.player.networkHandler.getConnection();
             // pos = PacketHelper.fixCoords(pos);
             Packet packet = new PlayerMoveC2SPacket.PositionAndOnGround(pos.getX(), pos.getY(), pos.getZ(), false);
@@ -57,14 +54,12 @@ public class Flight extends Mod {
         if (time > tth.geValueInt()){ // && mc.player.world.getBlockState(new BlockPos(mc.player.getPos().subtract(0, 0.0433D,0))).isAir()
             mc.options.sneakKey.setPressed(false);
             mc.options.jumpKey.setPressed(false);
-            assert mc.player != null;
             PacketHelper.sendPosition(mc.player.getPos().subtract(0.0, 0.0433D, 0.0));
             Vec3d velocity = mc.player.getVelocity();
             mc.player.setVelocity(velocity.x, -(yVel.getValueFloat()/100), velocity.z);
             time = 0;
         }
         logger.info(time);
-        assert mc.player != null;
         logger.info(mc.player.getPos().subtract(0.0, 0.0533D, 0.0));
         logger.info(mc.player.getPos());
     }
