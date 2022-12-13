@@ -6,7 +6,8 @@
   "mixins": [
     "MinecraftClientMixin",
     "KeyboardMixin",
-    "InGameHudMixin"
+    "InGameHudMixin",
+    "ClientConnectionInvoker"
   ],
   "client": [
   ],

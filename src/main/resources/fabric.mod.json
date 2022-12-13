@@ -3,8 +3,8 @@
   "id": "hackclient",
   "version": "${version}",
 
-  "name": "HackClient",
-  "description": "CustomHackClient",
+  "name": "UtilityMod",
+  "description": "Mod to make your live easier",
   "authors": [
     "virus_rpi"
   ],

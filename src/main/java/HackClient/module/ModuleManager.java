@@ -5,6 +5,7 @@ import HackClient.module.movement.Flight;
 import HackClient.module.movement.NoFall;
 import HackClient.module.Mod.Category;
 import HackClient.module.render.Coordinates;
+import HackClient.module.render.Fullbright;
 import org.apache.logging.log4j.LogManager;
 
 import java.util.ArrayList;
@@ -46,5 +47,6 @@ public class ModuleManager {
         mods.add(new Flight());
         mods.add(new NoFall());
         mods.add(new Coordinates());
+        mods.add(new Fullbright());
     }
 }
