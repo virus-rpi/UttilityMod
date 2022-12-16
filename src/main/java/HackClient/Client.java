@@ -14,7 +14,7 @@ public class Client implements ModInitializer {
     public static final Client INSTANCE = new Client();
     public Logger logger = LogManager.getLogger(Client.class);
 
-    private MinecraftClient mc = MinecraftClient.getInstance();
+    private final MinecraftClient mc = MinecraftClient.getInstance();
 
     @Override
     public void onInitialize(){
