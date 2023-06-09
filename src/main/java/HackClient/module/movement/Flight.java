@@ -5,7 +5,8 @@ import HackClient.mixins.ClientConnectionInvoker;
 import HackClient.module.Mod;
 import HackClient.module.settings.NumberSetting;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.network.Packet;
+import net.minecraft.network.listener.ServerPlayPacketListener;
+import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.c2s.play.PlayerMoveC2SPacket;
 import net.minecraft.util.math.Vec3d;
 import org.apache.logging.log4j.LogManager;
@@ -45,7 +46,7 @@ public class Flight extends Mod {
             assert client.player != null;
             ClientConnectionInvoker conn = (ClientConnectionInvoker)client.player.networkHandler.getConnection();
             // pos = PacketHelper.fixCoords(pos);
-            Packet packet = new PlayerMoveC2SPacket.PositionAndOnGround(pos.getX(), pos.getY(), pos.getZ(), false);
+            Packet<ServerPlayPacketListener> packet = new PlayerMoveC2SPacket.PositionAndOnGround(pos.getX(), pos.getY(), pos.getZ(), false);
             conn.sendIm(packet, null);
             }
         }

@@ -6,10 +6,10 @@
   "name": "UtilityMod",
   "description": "Mod to make your live easier",
   "authors": [
-    "virus_rpi"
+    "virusrpi"
   ],
   "contact": {
-    "homepage": "virusrpi.tk",
+    "homepage": "virusrpi.com",
     "sources": "https://github.com/virus-rpi/HackClient"
   },
 
@@ -29,7 +29,7 @@
   "depends": {
     "fabricloader": ">=0.14.10",
     "fabric-api": "*",
-    "minecraft": "~1.19",
+    "minecraft": "~1.20",
     "java": ">=17"
   },
   "suggests": {
