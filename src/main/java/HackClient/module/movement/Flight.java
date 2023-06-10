@@ -16,7 +16,7 @@ import org.lwjgl.glfw.GLFW;
 
 public class Flight extends Mod {
     private int time = 0;
-    public NumberSetting speed = new NumberSetting("Speed", 0, 10, 1, 1);
+    public NumberSetting speed = new NumberSetting("Speed", 0, 100, 1, 1);
     public NumberSetting yVel = new NumberSetting("Y-Velocity", 0, 100, 7, 1);
     public NumberSetting tth = new NumberSetting("Tick Threshold", 1, 80, 20, 1);
     public BooleanSetting fixPos = new BooleanSetting("Fix Position", false);
