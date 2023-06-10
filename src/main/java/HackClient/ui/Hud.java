@@ -2,7 +2,6 @@ package HackClient.ui;
 
 import HackClient.module.Mod;
 import HackClient.module.ModuleManager;
-import HackClient.module.render.Coordinates;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 
