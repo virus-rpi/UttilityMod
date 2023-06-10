@@ -4,9 +4,8 @@ import HackClient.Client;
 import HackClient.module.settings.NumberSetting;
 import HackClient.module.settings.Settings;
 import HackClient.ui.screens.clickgui.ModuleButton;
-import net.minecraft.client.gui.DrawableHelper;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.util.math.MatrixStack;
-import org.apache.logging.log4j.LogManager;
 
 import java.awt.*;
 import java.math.BigDecimal;
@@ -21,13 +20,13 @@ public class Slider extends Component{
     }
 
     @Override
-    public void render(MatrixStack matrices, double mouseX, double mouseY, float delta) {
-        DrawableHelper.fill(matrices, parent.parent.x, parent.parent.y + parent.offset + offset, parent.parent.x + parent.parent.width, parent.parent.y + offset + parent.offset + parent.parent.height, new Color(0x78000000, true).getRGB());
+    public void render(DrawContext context, double mouseX, double mouseY, float delta) {
+        context.fill(parent.parent.x, parent.parent.y + parent.offset + offset, parent.parent.x + parent.parent.width, parent.parent.y + offset + parent.offset + parent.parent.height, new Color(0x78000000, true).getRGB());
 
         double diff = Math.min(parent.parent.width, Math.max(0, mouseX - parent.parent.x));
         int renderWidth = (int)(((parent.parent.width * ((numSet.getValue() - numSet.getMin()) / (numSet.getMax() - numSet.getMin())))));
 
-        DrawableHelper.fill(matrices, parent.parent.x, parent.parent.y + parent.offset + offset, parent.parent.x + renderWidth, parent.parent.y + offset + parent.offset + parent.parent.height, Color.RED.getRGB());
+        context.fill(parent.parent.x, parent.parent.y + parent.offset + offset, parent.parent.x + renderWidth, parent.parent.y + offset + parent.offset + parent.parent.height, Color.RED.getRGB());
 
         if (sliding) {
             if (diff == 0) {
@@ -38,10 +37,10 @@ public class Slider extends Component{
         }
 
         int offset_center = ((parent.parent.height/2)-mc.textRenderer.fontHeight / 2);
-        mc.textRenderer.drawWithShadow(matrices, (numSet.getName() + ": " ), parent.parent.x + offset_center, parent.parent.y + offset_center + parent.offset + offset, -1);
-        mc.textRenderer.drawWithShadow(matrices, ""+numSet.getValue(), parent.parent.x + parent.parent.width - offset_center - 2 - mc.textRenderer.getWidth(""+rundToPlace(numSet.getValue(), 1)), parent.parent.y + offset_center + parent.offset + offset, -1);
+        context.drawTextWithShadow(mc.textRenderer, (numSet.getName() + ": " ), parent.parent.x + offset_center, parent.parent.y + offset_center + parent.offset + offset, -1);
+        context.drawTextWithShadow(mc.textRenderer, ""+numSet.getValue(), parent.parent.x + parent.parent.width - offset_center - 2 - mc.textRenderer.getWidth(""+rundToPlace(numSet.getValue(), 1)), parent.parent.y + offset_center + parent.offset + offset, -1);
 
-        super.render(matrices, mouseX, mouseY, delta);
+        super.render(context, mouseX, mouseY, delta);
     }
 
     @Override

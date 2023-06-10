@@ -3,6 +3,7 @@ package HackClient.module.render;
 import HackClient.module.Mod;
 import HackClient.module.ModuleManager;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.math.MatrixStack;
 
@@ -16,7 +17,7 @@ public class Coordinates extends Mod {
     public double z = 0.0F;
     private static MinecraftClient mc = MinecraftClient.getInstance();
 
-    private static void renderArrayList(MatrixStack matrices) {
+    private static void renderArrayList(DrawContext context) {
         int index = 0;
         int sWidth = mc.getWindow().getScaledWidth();
         int sHight = mc.getWindow().getScaledHeight();
@@ -24,7 +25,7 @@ public class Coordinates extends Mod {
         enabled.sort(Comparator.comparing(m -> (int)mc.textRenderer.getWidth(((Mod)m).getDisplayName())).reversed());
 
         for (Mod mod : enabled) {
-            mc.textRenderer.drawWithShadow(matrices, mod.getDisplayName(), (sWidth-4)-mc.textRenderer.getWidth(mod.getDisplayName()), 10 + (index * mc.textRenderer.fontHeight), -1);
+            context.drawTextWithShadow(mc.textRenderer, mod.getDisplayName(), (sWidth-4)-mc.textRenderer.getWidth(mod.getDisplayName()), 10 + (index * mc.textRenderer.fontHeight), -1);
             index++;
         }
     }

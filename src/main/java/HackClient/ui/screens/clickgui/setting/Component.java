@@ -3,6 +3,7 @@ package HackClient.ui.screens.clickgui.setting;
 import HackClient.module.settings.Settings;
 import HackClient.ui.screens.clickgui.ModuleButton;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.util.math.MatrixStack;
 
 public class Component {
@@ -18,7 +19,7 @@ public class Component {
 
     }
 
-    public void render(MatrixStack matrices, double mouseX, double mouseY, float delta){
+    public void render(DrawContext context, double mouseX, double mouseY, float delta){
 
     }
 

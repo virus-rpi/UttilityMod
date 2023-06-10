@@ -10,8 +10,7 @@ import HackClient.ui.screens.clickgui.setting.CheckBox;
 import HackClient.ui.screens.clickgui.setting.Component;
 import HackClient.ui.screens.clickgui.setting.ModeBox;
 import HackClient.ui.screens.clickgui.setting.Slider;
-import net.minecraft.client.gui.DrawableHelper;
-import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.client.gui.DrawContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -47,16 +46,16 @@ public class ModuleButton {
         }
     }
 
-    public void render(MatrixStack matrices, double mouseX, double mouseY, float delta) {
-        DrawableHelper.fill(matrices, parent.x, parent.y + offset, parent.x + parent.width, parent.y + offset + parent.height, new Color(0xa0000000, true).getRGB());
-        if (isHovered(mouseX, mouseY)) DrawableHelper.fill(matrices, parent.x, parent.y + offset, parent.x + parent.width, parent.y + offset + parent.height, new Color(0xa0000000, true).getRGB());
+    public void render(DrawContext context, double mouseX, double mouseY, float delta) {
+        context.fill(parent.x, parent.y + offset, parent.x + parent.width, parent.y + offset + parent.height, new Color(0xa0000000, true).getRGB());
+        if (isHovered(mouseX, mouseY)) context.fill(parent.x, parent.y + offset, parent.x + parent.width, parent.y + offset + parent.height, new Color(0xa0000000, true).getRGB());
 
         int offset_center = ((parent.height/2)-parent.mc.textRenderer.fontHeight / 2);
-        parent.mc.textRenderer.drawWithShadow(matrices, module.getName(), parent.x+offset_center, parent.y + offset+offset_center, module.isEnabled() ? Color.RED.getRGB() : -1);
+        context.drawTextWithShadow(parent.mc.textRenderer, module.getName(), parent.x+offset_center, parent.y + offset+offset_center, module.isEnabled() ? Color.RED.getRGB() : -1);
 
         if (extended) {
             for (Component component : components) {
-                component.render(matrices, mouseX, mouseY, delta);
+                component.render(context, mouseX, mouseY, delta);
             }
         }
     }
