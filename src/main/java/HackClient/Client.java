@@ -22,12 +22,14 @@ public class Client implements ModInitializer {
     }
 
     public void onKeyPress(int key, int action) {
-        if (action == GLFW.GLFW_PRESS) {
-            for (Mod module : ModuleManager.INSTANCE.getModules()){
-                if (key == module.getKey()) module.toggle();
-            }
-            if (key == GLFW.GLFW_KEY_RIGHT_SHIFT) {
-                mc.setScreen(ClickGUI.INSTANCE);
+        if (mc.currentScreen == null) {
+            if (action == GLFW.GLFW_PRESS) {
+                for (Mod module : ModuleManager.INSTANCE.getModules()) {
+                    if (key == module.getKey()) module.toggle();
+                }
+                if (key == GLFW.GLFW_KEY_RIGHT_SHIFT) {
+                    mc.setScreen(ClickGUI.INSTANCE);
+                }
             }
         }
     }

@@ -1,6 +1,5 @@
 package HackClient.module.movement;
 
-import HackClient.Client;
 import HackClient.mixins.ClientConnectionInvoker;
 import HackClient.module.Mod;
 import HackClient.module.settings.BooleanSetting;
@@ -10,8 +9,6 @@ import net.minecraft.network.listener.ServerPlayPacketListener;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.c2s.play.PlayerMoveC2SPacket;
 import net.minecraft.util.math.Vec3d;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.lwjgl.glfw.GLFW;
 
 public class Flight extends Mod {
@@ -19,10 +16,9 @@ public class Flight extends Mod {
     public NumberSetting speed = new NumberSetting("Speed", 0, 100, 1, 1);
     public NumberSetting yVel = new NumberSetting("Y-Velocity", 0, 100, 7, 1);
     public NumberSetting tth = new NumberSetting("Tick Threshold", 1, 80, 20, 1);
-    public BooleanSetting fixPos = new BooleanSetting("Fix Position", false);
+    public BooleanSetting fixPos = new BooleanSetting("Fix Position", true);
     public BooleanSetting antikick = new BooleanSetting("AntiKick", true);
     public NumberSetting antikickMultiplier = new NumberSetting("AntiKick amount", 1, 5, 1, 1);
-    public Logger logger = LogManager.getLogger(Client.class);
     public Flight() {
         super("Flight", "Allows you to fly", Category.MOVEMENT, "Flight");
         this.setKey(GLFW.GLFW_KEY_V);
@@ -67,13 +63,16 @@ public class Flight extends Mod {
             Vec3d velocity = mc.player.getVelocity();
             mc.player.setVelocity(velocity.x, -(yVel.getValueFloat()/100), velocity.z);
             time = 0;
+        }
+        if (time == 1) {
             if (fixPos.isEnabled()) {
+                double amount = antikickMultiplier.getValueFloat() * 0.0433D;
+                assert mc.player != null;
                 PacketHelper.sendPosition(mc.player.getPos().add(0.0, amount, 0.0));
-                velocity = mc.player.getVelocity();
-                mc.player.setVelocity(velocity.x, -(yVel.getValueFloat()/100), velocity.z);
+                Vec3d velocity = mc.player.getVelocity();
+                mc.player.setVelocity(velocity.x, (yVel.getValueFloat()/200), velocity.z);
             }
         }
-        logger.info(time);
     }
 
 }
