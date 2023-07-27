@@ -8,10 +8,11 @@ import net.minecraft.client.gui.DrawContext;
 import java.text.DecimalFormat;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
 
 public class Hud {
     private static final DecimalFormat df = new DecimalFormat("0.00");
-    private static MinecraftClient mc = MinecraftClient.getInstance();
+    private static final MinecraftClient mc = MinecraftClient.getInstance();
 
     public static void render(DrawContext context, float tickDelta){
         // mc.textRenderer.drawWithShadow(matrices, "Test", 10, 10, -1);
@@ -22,13 +23,14 @@ public class Hud {
         int index = 0;
         int sWidth = mc.getWindow().getScaledWidth();
         int sHight = mc.getWindow().getScaledHeight();
-        List<Mod> enabled = ModuleManager.INSTANCE.getEnabeledModules();
-        enabled.sort(Comparator.comparing(m -> (int)mc.textRenderer.getWidth(((Mod)m).getDisplayName())).reversed());
+        List<Mod> enabled = ModuleManager.INSTANCE.getEnabledModules();
+        enabled.sort(Comparator.comparing(m -> mc.textRenderer.getWidth(((Mod)m).getDisplayName())).reversed());
 
         for (Mod mod : enabled) {
             context.drawTextWithShadow(mc.textRenderer, mod.getDisplayName(), (sWidth-4)-mc.textRenderer.getWidth(mod.getDisplayName()), 10 + (index * mc.textRenderer.fontHeight), -1);
             index++;
-            if (mod.getName() == "Coordinates") {
+            if (Objects.equals(mod.getName(), "Coordinates")) {
+                assert mc.player != null;
                 double x = Math.round(mc.player.getX()*100.0)/100.0;
                 double y = Math.round(mc.player.getY()*100.0)/100.0;
                 double z = Math.round(mc.player.getZ()*100.0)/100.0;

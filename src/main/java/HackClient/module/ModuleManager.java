@@ -1,19 +1,17 @@
 package HackClient.module;
 
-import HackClient.Client;
 import HackClient.module.movement.Flight;
 import HackClient.module.movement.NoFall;
 import HackClient.module.Mod.Category;
 import HackClient.module.render.Coordinates;
 import HackClient.module.render.Fullbright;
-import org.apache.logging.log4j.LogManager;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ModuleManager {
     public static final ModuleManager INSTANCE = new ModuleManager();
-    private List<Mod> mods = new ArrayList<>();
+    private final List<Mod> mods = new ArrayList<>();
 
     public ModuleManager() {
         addModules();
@@ -23,13 +21,13 @@ public class ModuleManager {
         return mods;
     }
 
-    public List<Mod> getEnabeledModules(){
-        List<Mod> enabeld = new ArrayList<>();
+    public List<Mod> getEnabledModules(){
+        List<Mod> enabled = new ArrayList<>();
         for (Mod mod : mods) {
-            if (mod.isEnabled()) enabeld.add(mod);
+            if (mod.isEnabled()) enabled.add(mod);
         }
 
-        return enabeld;
+        return enabled;
     }
 
     public List<Mod> getModulesInCategory(Category category){

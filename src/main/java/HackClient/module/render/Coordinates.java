@@ -17,7 +17,7 @@ public class Coordinates extends Mod {
     private static void renderArrayList(DrawContext context) {
         int index = 0;
         int sWidth = mc.getWindow().getScaledWidth();
-        List<Mod> enabled = ModuleManager.INSTANCE.getEnabeledModules();
+        List<Mod> enabled = ModuleManager.INSTANCE.getEnabledModules();
         enabled.sort(Comparator.comparing(m -> mc.textRenderer.getWidth(((Mod)m).getDisplayName())).reversed());
 
         for (Mod mod : enabled) {

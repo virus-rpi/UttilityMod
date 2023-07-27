@@ -2,7 +2,9 @@ package HackClient.module.settings;
 
 public class NumberSetting extends Settings{
 
-    private double min, max, increment;
+    private final double min;
+    private final double max;
+    private final double increment;
     private double value;
 
     public NumberSetting(String name, double min, double max, double defaultVale, double increment) {
@@ -37,7 +39,8 @@ public class NumberSetting extends Settings{
 
     public void setValue(double value) {
         value = clamp(value, this.min, this.max);
-        value = Math.round(value * (1.0 / this.increment) / 1.0 / this.increment);
+        value = value * (1.0 / this.increment) / 1.0 / this.increment;
+        value = Math.round(value * 1000.0) / 1000.0;
         this.value = value;
     }
     public void increment(boolean positive){

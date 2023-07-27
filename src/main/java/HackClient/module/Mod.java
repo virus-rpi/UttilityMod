@@ -11,10 +11,10 @@ public class Mod{
     private String name;
     private  String description;
     private String displayName;
-    private Category category;
+    private final Category category;
     private int key;
     private boolean enabled;
-    private List<Settings> settings = new ArrayList<>();
+    private final List<Settings> settings = new ArrayList<>();
     protected MinecraftClient mc = MinecraftClient.getInstance();
 
     public Mod(String name, String description, Category category, String displayName) {
@@ -91,11 +91,12 @@ public class Mod{
         MOVEMENT("Movement"),
         RENDER("Render"),
         EXPLOIT("Exploit"),
-        WORLD("World");
+        WORLD("World"),
+        MISC("Misc");
 
-        public String name;
+        public final String name;
 
-        private Category(String name){
+        Category(String name){
             this.name = name;
         }
     }

@@ -4,12 +4,11 @@
   "package": "HackClient.mixins",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "MinecraftClientMixin",
-    "KeyboardMixin",
+    "ClientConnectionInvoker",
     "InGameHudMixin",
-    "ClientConnectionInvoker"
-  ],
-  "client": [
+    "KeyboardMixin",
+    "MixinDirectConnect",
+    "MinecraftClientMixin"
   ],
   "injectors": {
     "defaultRequire": 1
