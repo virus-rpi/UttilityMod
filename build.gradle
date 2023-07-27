@@ -63,17 +63,6 @@ jar {
 	}
 }
 
-shadowJar {
-	configurations = [project.configurations.shadow]
-	archiveClassifier.set("dev")
-	relocate "net.objecthunter", "de.siphalor.spiceoffabric.shadow.net.objecthunter"
-}
-
-remapJar {
-	dependsOn(shadowJar)
-	inputFile = tasks.shadowJar.archiveFile
-}
-
 // configure the maven publication
 publishing {
 	publications {
