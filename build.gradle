@@ -1,6 +1,6 @@
 plugins {
 	id 'fabric-loom' version '1.0-SNAPSHOT'
-	id "com.github.johnrengelman.plugin-shadow" version "2.0.3"
+	id "com.github.johnrengelman.shadow" version "7.1.2"
 	id 'maven-publish'
 }
 
@@ -61,6 +61,17 @@ jar {
 	from("LICENSE") {
 		rename { "${it}_${project.archivesBaseName}"}
 	}
+}
+
+remapJar {
+	dependsOn(shadowJar)
+	inputFile = tasks.shadowJar.archiveFile
+}
+
+shadowJar {
+	configurations = [project.configurations.shadow]
+	archiveClassifier.set("dev")
+	relocate "net.objecthunter", "de.siphalor.spiceoffabric.shadow.net.objecthunter"
 }
 
 // configure the maven publication
